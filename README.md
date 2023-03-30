@@ -1,30 +1,51 @@
-# HeadHome 
+# HeadHome Backend
+<div align="center">
+    <div >
+        <img width="200px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fheadhome_square.png?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>
+    </div>
+    <div >
+            <b style="font-size:25px">HeadHome</b>
+            <br> 
+            <p style="font-size:18px">Dementia Aid Solution</p>
+    </div>    
+        
+</div>
 
-## Project Description
+<br>
 
-### The Team
+# Getting Started
+This repo contains the backend application for HeadHome. Click [here](https://github.com/GSC23-HeadHome/HeadHome) to view the full solution.
 
-| Members                                             | 
-| --------------------------------------------------- | 
-| [Chay Hui Xiang](https://github.com/chayhuixang)    | 
-| [Chang Dao Zheng](https://github.com/changdaozheng) |
-| [Marc Chern Di Yong](https://github.com/Trigon25)   | 
-| [Ong Jing Xuan](https://github.com/ongjx16)         |
+<br>
 
-## HeadHome (Backend)
-This repo contains the backend application for HeadHome.
-Go `(Version 1.19+)` must be installed to run the application.
+## Prerequisites
+[Go `(Version 1.19+)`](https://go.dev/doc/install) must be installed to run this application.
 
-### Tech Stack
-1. [Go](https://go.dev/)
-2. [Firebase](https://firebase.google.com/)
+<br>
 
-### Quick Start:
-1. Run the following code in bash to install the required dependencies
+## Tech Stack
+
+<div align="center">
+  <p>
+    <a href="https://go.dev/">
+      <img width="100px" src="https://skillicons.dev/icons?i=go" />
+    </a>
+    <a href="https://firebase.google.com/">
+      <img width="100px" src="https://skillicons.dev/icons?i=firebase" />
+    </a>
+  </p>
+</div>
+
+## Quick Start:
+1. Clone Repo
 ```
-go get all
+$ git clone https://github.com/GSC23-HeadHome/HeadHome-Backend.git
 ```
-2. Create a `.env` file and insert your Firebase Admin SDK private key and Maps API api key. 
+2. Run the following code in bash to install the required dependencies
+```
+$ go get all
+```
+3. Create a `.env` file and insert your Firebase Admin SDK private key and Maps API api key. 
 <br>
 <font color="#888888">
     Note: Place the entire Firebase Admin SDK private key json object on a single line and escape all `\` and `\n` characters with `\`. Lastly, surround the json object with double quotations `""`.
@@ -35,11 +56,15 @@ go get all
 FIREBASE_ADMIN_PRIVATE_KEY=<your inline firebase admin private key>
 MAPS_API_KEY=<your maps api key>
 ```
+4. Launch the server at `0.0.0.0:8080`
+```
+$ go run ./cmd
+```
 
-### Scripts
-Run `go run ./cmd` to launch the server at `0.0.0.0:8080`.
+<br>
 
-### File structure
+## File structure:
+
 ```tree
 ├── cmd
 │   └──main.go
@@ -57,6 +82,10 @@ Run `go run ./cmd` to launch the server at `0.0.0.0:8080`.
 │   ├── sos_log_collection.go
 │   ├── travel_log_collection.go
 │   └── volunteers_collection.go
+├── fcm
+│   └── fcm.go
+├── firebase_app
+│   └── firebase_app.go
 ├── logic
 │   ├── direction.go
 │   └── util.go
@@ -82,3 +111,11 @@ Run `go run ./cmd` to launch the server at `0.0.0.0:8080`.
 ├── README.md
 └── replit.nix
 ```
+
+<br>
+
+# Developers
+              
+|<img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fhuixiang.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>|<img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fdaozheng.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>|<img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fmarc.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>| <img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fjingxuan.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>
+|--------------------------|--------------------------|--------------------------|--------------------------|
+|<div align="center"> <h3><b>Chay Hui Xiang</b></h3><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b>Chang Dao Zheng</b></h3><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b>Marc Chern Di Yong</b></h3><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b>Ong Jing Xuan</b></h3><p><i>Nanyang Technological University</i></p></div>|
