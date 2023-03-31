@@ -41,7 +41,7 @@ The <b>HeadHome backend</b> is responsible for real-time interactions between th
       </kbd>
     </a>
     <br>
-    <h4>Go | Gin | Firebase | Google Maps Platform | Google Cloud Platforms</h4>
+    <h4>Go | Gin | Firebase | Google Maps Platform | Google Cloud Platform</h4>
 </div>
 
 <br>
