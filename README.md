@@ -16,12 +16,32 @@ The <b>HeadHome wearable</b> is responsible for real-time interactions between t
 <br />
 <div align="center">
   <a href="https://go.dev/">
-      <img width="50" src="https://skillicons.dev/icons?i=go" />
+      <kbd>
+      <img src="./assets/icons/Go.png" height="60" />
+      </kbd>
+    </a>
+     <a href="https://firebase.google.com/">
+      <kbd>
+      <img src="./assets/icons/Gin.png" height="60" />
+      </kbd>
     </a>
     <a href="https://firebase.google.com/">
-      <img width="50" src="https://skillicons.dev/icons?i=firebase" />
+      <kbd>
+      <img src="./assets/icons/Firebase.png" height="60" />
+      </kbd>
     </a>
-  <h4>Go | Firebase</h4>
+    <a href="https://mapsplatform.google.com/">
+      <kbd>
+      <img src="./assets/icons/Maps.png" height="60" />
+      </kbd>
+    </a>
+    <a href="https://cloud.google.com/">
+      <kbd>
+      <img src="./assets/icons/GCP.png" height="60" />
+      </kbd>
+    </a>
+    <br>
+    <h4>Go | Gin | Firebase | Google Maps Platform | Google Cloud Platforms</h4>
 </div>
 
 <br>
