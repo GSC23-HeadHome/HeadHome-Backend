@@ -11,8 +11,8 @@
 
 <h1 align="center">HeadHome Backend</h1>
 The <b>HeadHome wearable</b> is responsible for real-time interactions between the dementia patients, caregivers and volunteers. This ensures that dementia patients can receive timely assistance from caregivers or nearby volunteers and help them to head home safely!
-
-<h2 align="center">👨🏻‍💻 Technology Stack</h2>
+<br>
+<h2>👨🏻‍💻 Technology Stack</h2>
 <br />
 <div align="center">
   <a href="https://go.dev/">
@@ -108,7 +108,8 @@ $ go run ./cmd
 
 <br>
 
-# Developers
+
+# 👥 &nbsp;Contributors
 
 |<a href="https://www.linkedin.com/in/hui-xiang/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fhuixiang.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://www.linkedin.com/in/dao-zheng-chang/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fdaozheng.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://www.linkedin.com/in/marc-chern/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fmarc.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://www.linkedin.com/in/jing-xuan-ong-8b59b3201/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fjingxuan.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>
 |--------------------------|--------------------------|--------------------------|--------------------------|
