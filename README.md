@@ -1,42 +1,37 @@
-# HeadHome Backend
 <div align="center">
     <div >
         <img width="200px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fheadhome_square.png?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>
     </div>
     <div >
-            <b style="font-size:25px">HeadHome</b>
-            <br> 
-            <p style="font-size:18px">Dementia Aid Solution</p>
-    </div>    
-        
+            <p style="font-size:50px;"><b>HeadHome</b></p>
+            <p style="font-size:18px"><i>Your companion, every step of the way</i></p>
+    </div>      
+</div>
+<br>
+
+<h1 align="center">HeadHome Backend</h1>
+The <b>HeadHome wearable</b> is responsible for real-time interactions between the dementia patients, caregivers and volunteers. This ensures that dementia patients can receive timely assistance from caregivers or nearby volunteers and help them to head home safely!
+
+<h2 align="center">👨🏻‍💻 Technology Stack</h2>
+<br />
+<div align="center">
+  <a href="https://go.dev/">
+      <img width="50" src="https://skillicons.dev/icons?i=go" />
+    </a>
+    <a href="https://firebase.google.com/">
+      <img width="50" src="https://skillicons.dev/icons?i=firebase" />
+    </a>
+  <h4>Go | Firebase</h4>
 </div>
 
 <br>
 
 # Getting Started
 This repo contains the backend application for HeadHome. Click [here](https://github.com/GSC23-HeadHome/HeadHome) to view the full solution.
-
-<br>
-
-## Prerequisites
+<br><br>
 [Go `(Version 1.19+)`](https://go.dev/doc/install) must be installed to run this application.
 
-<br>
-
-## Tech Stack
-
-<div align="center">
-  <p>
-    <a href="https://go.dev/">
-      <img width="100px" src="https://skillicons.dev/icons?i=go" />
-    </a>
-    <a href="https://firebase.google.com/">
-      <img width="100px" src="https://skillicons.dev/icons?i=firebase" />
-    </a>
-  </p>
-</div>
-
-## Quick Start:
+## ⚙️ &nbsp;Steps to Setup
 1. Clone Repo
 ```
 $ git clone https://github.com/GSC23-HeadHome/HeadHome-Backend.git
@@ -61,9 +56,8 @@ MAPS_API_KEY=<your maps api key>
 $ go run ./cmd
 ```
 
-<br>
 
-## File structure:
+## 🔑 &nbsp; Files and Directories
 
 ```tree
 ├── cmd
@@ -115,7 +109,7 @@ $ go run ./cmd
 <br>
 
 # Developers
-              
-|<img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fhuixiang.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>|<img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fdaozheng.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>|<img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fmarc.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>| <img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fjingxuan.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>
+
+|<a href="https://www.linkedin.com/in/hui-xiang/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fhuixiang.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://www.linkedin.com/in/dao-zheng-chang/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fdaozheng.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://www.linkedin.com/in/marc-chern/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fmarc.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://www.linkedin.com/in/jing-xuan-ong-8b59b3201/"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fjingxuan.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/>
 |--------------------------|--------------------------|--------------------------|--------------------------|
-|<div align="center"> <h3><b>Chay Hui Xiang</b></h3><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b>Chang Dao Zheng</b></h3><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b>Marc Chern Di Yong</b></h3><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b>Ong Jing Xuan</b></h3><p><i>Nanyang Technological University</i></p></div>|
+|<div align="center"> <h3><b><a href="https://github.com/chayhuixiang">Chay Hui Xiang</b></h3></a><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b><a href="https://github.com/changdaozheng/">Chang Dao Zheng</b></h3></a><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b><a href="https://github.com/Trigon25">Marc Chern Di Yong</b></h3></a><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b><a href="https://github.com/ongjx16">Ong Jing Xuan</b></h3></a><p><i>Nanyang Technological University</i></p></div>|
