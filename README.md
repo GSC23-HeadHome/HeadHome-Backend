@@ -10,7 +10,7 @@
 <br>
 
 <h1 align="center">HeadHome Backend</h1>
-The <b>HeadHome wearable</b> is responsible for real-time interactions between the dementia patients, caregivers and volunteers. This ensures that dementia patients can receive timely assistance from caregivers or nearby volunteers and help them to head home safely!
+The <b>HeadHome backend</b> is responsible for real-time interactions between the dementia patients, caregivers and volunteers. This ensures that dementia patients can receive timely assistance from caregivers or nearby volunteers and help them to head home safely!
 <br>
 <h2>👨🏻‍💻 Technology Stack</h2>
 <br />
