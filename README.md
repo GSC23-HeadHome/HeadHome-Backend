@@ -126,6 +126,7 @@ $ go run ./cmd
 ├── .env (not included in github repo)
 ├── .gitignore
 ├── .replit
+├── Dockerfile
 ├── go.mod
 ├── go.sum
 ├── Makefile
