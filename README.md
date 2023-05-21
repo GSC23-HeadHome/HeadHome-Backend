@@ -47,35 +47,42 @@ The <b>HeadHome backend</b> is responsible for real-time interactions between th
 <br>
 
 # Getting Started
+
 This repo contains the backend application for HeadHome. Click [here](https://github.com/GSC23-HeadHome/HeadHome) to view the full solution.
 <br><br>
 [Go `(Version 1.19+)`](https://go.dev/doc/install) must be installed to run this application.
 
 ## ⚙️ &nbsp;Steps to Setup
+
 1. Clone Repo
+
 ```
 $ git clone https://github.com/GSC23-HeadHome/HeadHome-Backend.git
 ```
+
 2. Run the following code in bash to install the required dependencies
+
 ```
 $ go get all
 ```
-3. Create a `.env` file and insert your Firebase Admin SDK private key and Maps API api key. 
-<br>
-<font color="#888888">
-    Note: Place the entire Firebase Admin SDK private key json object on a single line and escape all `\` and `\n` characters with `\`. Lastly, surround the json object with double quotations `""`.
-</font>
+
+3. Create a `.env` file and insert your Firebase Admin SDK private key and Maps API api key.
+   <br>
+   <font color="#888888">
+   Note: Place the entire Firebase Admin SDK private key json object on a single line and escape all `\`, `\n` and quotation(") characters with `\`. Lastly, surround the json object with double quotations `""`.
+   </font>
 
 ```css
 /*.env file*/
 FIREBASE_ADMIN_PRIVATE_KEY=<your inline firebase admin private key>
 MAPS_API_KEY=<your maps api key>
 ```
-4. Launch the server at `0.0.0.0:8080`
+
+1. Launch the server at `0.0.0.0:8080`
+
 ```
 $ go run ./cmd
 ```
-
 
 ## 🔑 &nbsp; Files and Directories
 
@@ -128,10 +135,8 @@ $ go run ./cmd
 
 <br>
 
-
 ## 👥 &nbsp;Contributors
 
-|<a href="https://github.com/chayhuixiang"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fhuixiang.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://github.com/changdaozheng"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fdaozheng.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>|<a href="https://github.com/Trigon25"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fmarc.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>| <a href="https://github.com/ongjx16"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fjingxuan.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a>
-|--------------------------|--------------------------|--------------------------|--------------------------|
-|<div align="center"><h3><b><a href="https://github.com/chayhuixiang">Chay Hui Xiang</a></b></h3><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b><a href="https://github.com/changdaozheng">Chang Dao Zheng</a></b></h3></a><p><i>Nanyang Technological University</i></p></div>|<div align="center"><h3><b><a href="https://github.com/Trigon25">Marc Chern Di Yong</a></b></h3></a><p><i>Nanyang Technological University</i></p></div></a>|<div align="center"><h3><b><a href="https://github.com/ongjx16">Ong Jing Xuan</a></b></h3></a><p><i>Nanyang Technological University</i></p></div>|
-
+| <a href="https://github.com/chayhuixiang"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fhuixiang.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a> | <a href="https://github.com/changdaozheng"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fdaozheng.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a> | <a href="https://github.com/Trigon25"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fmarc.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a> | <a href="https://github.com/ongjx16"><img width="180px" src="https://firebasestorage.googleapis.com/v0/b/gsc23-12e94.appspot.com/o/members%2Fjingxuan.jpeg?alt=media&token=96a55b42-7c9f-4e68-b41f-d986efe79c01" alt=""/></a> |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <div align="center"><h3><b><a href="https://github.com/chayhuixiang">Chay Hui Xiang</a></b></h3><p><i>Nanyang Technological University</i></p></div>                                                                               | <div align="center"><h3><b><a href="https://github.com/changdaozheng">Chang Dao Zheng</a></b></h3></a><p><i>Nanyang Technological University</i></p></div>                                                                          | <div align="center"><h3><b><a href="https://github.com/Trigon25">Marc Chern Di Yong</a></b></h3></a><p><i>Nanyang Technological University</i></p></div></a>                                                               | <div align="center"><h3><b><a href="https://github.com/ongjx16">Ong Jing Xuan</a></b></h3></a><p><i>Nanyang Technological University</i></p></div>                                                                            |

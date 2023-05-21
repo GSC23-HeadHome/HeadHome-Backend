@@ -1,22 +1,26 @@
 package firebase_app
 
 import (
-    "os"
-	"log"
 	"context"
+	"log"
+	"os"
 
-    "firebase.google.com/go"
-    "google.golang.org/api/option"
-    "github.com/joho/godotenv"
+	firebase "firebase.google.com/go"
+	"github.com/joho/godotenv"
+	"google.golang.org/api/option"
 )
 
 var App *firebase.App
 
 func init() {
-
-    err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	var err error
+	
+	_, exists := os.LookupEnv(("FIREBASE_ADMIN_PRIVATE_KEY"))
+	if !exists {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("Error loading .env file")
+		}
 	}
 
 	conf := &firebase.Config{ProjectID: "gsc23-12e94"}

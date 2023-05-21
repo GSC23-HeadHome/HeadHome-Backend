@@ -1,15 +1,15 @@
 package logic
 
 import (
-    "os"
-    "fmt"
-    "errors"
-    "strings"
-    "net/http"
-    "io/ioutil"
-    "encoding/json"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"strings"
 
-    "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 )
 
 type MultiTypes struct {
@@ -77,12 +77,13 @@ func mapToNode(data interface{}) (Node, error){
 }
 
 func RetrieveDirections(start string, end string) (DirectionsResult, error){
-
-    //Step 1: Directions API call
-    //Load API key from .env
-    err := godotenv.Load()
-	if err != nil {
-		return DirectionsResult{}, errors.New("error loading .env file")
+	
+	_, exists := os.LookupEnv(("MAPS_API_KEY"))
+	if !exists {
+		err := godotenv.Load()
+		if err != nil {
+			return DirectionsResult{}, errors.New("error loading .env file")
+		}
 	}
 
     //API call inputs
