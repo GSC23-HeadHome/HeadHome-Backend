@@ -60,14 +60,15 @@ func ContactCareGiver(c *gin.Context){
 		CgId string `json:"CgId"`
 	}
 
-	var req requestBody
-	if err := c.ShouldBindJSON(&req); err != nil {
-		c.IndentedJSON(http.StatusBadRequest,  gin.H{"error": err.Error()})
+	CrId := c.Query("CrId")
+	CgId := c.Query("CgId")
+	if CrId == "" || CgId == "" {
+		c.IndentedJSON(http.StatusNotFound, gin.H{"error": "Please enter CrId and CgId"})
 		return
 	}
 
 	//Retrieve care receiver
-	careReceiver, err := database.ReadCareReceiver(req.CrId)
+	careReceiver, err := database.ReadCareReceiver(CrId)
 	if err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": "care receiver not found"})
 		return
@@ -75,9 +76,9 @@ func ContactCareGiver(c *gin.Context){
 
 	//Check access permission
 	for _, cg := range careReceiver.CareGiver {
-		if (cg.Id == req.CgId){
+		if (cg.Id == CgId){
 			//Retrieve care giver infromation
-			careGiver, err := database.ReadCareGiver(req.CgId)
+			careGiver, err := database.ReadCareGiver(CgId)
 			if err != nil {
 				c.IndentedJSON(http.StatusNotFound, gin.H{"error": "care giver not found"})
 				return
