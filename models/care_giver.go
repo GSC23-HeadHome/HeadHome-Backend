@@ -1,3 +1,7 @@
+// Package models provides data models that represent documents in the Firestore collection.
+// 
+// These models define the structure and fields of each document in the collection, 
+// enabling convenient manipulation and interaction with the Firestore data.
 package models
 
 type Relationship struct{

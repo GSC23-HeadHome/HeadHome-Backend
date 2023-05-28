@@ -1,3 +1,6 @@
+// Package database provides functionality for managing the connection and interactions with the Firestore database. 
+//
+// It includes initialization of the Firestore client and CRUD operations for all Firestore collections. 
 package database
 
 import (
@@ -6,7 +9,7 @@ import (
 	
 	"cloud.google.com/go/firestore"
 
-	"github.com/changdaozheng/headhome-backend/firebase_app"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/firebase_app"
 )
 
 var FBCtx context.Context

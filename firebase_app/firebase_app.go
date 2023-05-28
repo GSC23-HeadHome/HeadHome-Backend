@@ -1,3 +1,4 @@
+// Package firebase_app manages the connection between this server and Firebase, providing initialization and access to the Firebase app instance.
 package firebase_app
 
 import (

@@ -1,3 +1,6 @@
+// Package fcm implements push notifications for users by leveraging the Firebase Cloud Messaging (FCM) service.
+//
+// It provides initialization and access to the FCM client for sending push notification messages to users subscribed to a specific FCM topic.
 package fcm
 
 import (
@@ -8,7 +11,7 @@ import (
 
     "firebase.google.com/go/messaging"
 
-	"github.com/changdaozheng/headhome-backend/firebase_app"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/firebase_app"
 )
 
 var FCMContext context.Context

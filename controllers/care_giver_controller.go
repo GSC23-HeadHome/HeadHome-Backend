@@ -1,3 +1,8 @@
+// Package controllers provides controller or handler functions for handling API endpoints related to data collections. 
+//
+// It links the [route] and [database] packages to provide functionalities for managing and processing data collections, 
+// including CRUD operations and other operations specific to the collections in the application.
+
 package controllers
 
 import (
@@ -6,8 +11,8 @@ import (
 	
 	"github.com/gin-gonic/gin"
 
-	"github.com/changdaozheng/headhome-backend/models"
-	"github.com/changdaozheng/headhome-backend/database"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/models"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
 //Add new care giver

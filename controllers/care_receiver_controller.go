@@ -6,7 +6,7 @@ import (
 	
 	"github.com/gin-gonic/gin"
 
-	"github.com/changdaozheng/headhome-backend/database"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
 //CRUD Functions

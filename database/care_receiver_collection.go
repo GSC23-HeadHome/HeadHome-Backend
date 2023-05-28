@@ -8,8 +8,8 @@ import (
 	"cloud.google.com/go/firestore"
 	"google.golang.org/api/iterator"
 
-	"github.com/changdaozheng/headhome-backend/logic"
-	"github.com/changdaozheng/headhome-backend/models"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/logic"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/models"
 )
 
 var careReceiverRef *firestore.CollectionRef

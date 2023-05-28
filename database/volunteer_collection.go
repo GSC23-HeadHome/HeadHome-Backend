@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"cloud.google.com/go/firestore"
 	
-	"github.com/changdaozheng/headhome-backend/models"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/models"
 )
 
 var volunteerRef *firestore.CollectionRef

@@ -1,3 +1,6 @@
+// Package logic provides utility functions that serve the business logic of the application.
+//
+// It includes functions for interacting with external APIs, performing data transformations, and implementing core business rules.
 package logic
 
 import (

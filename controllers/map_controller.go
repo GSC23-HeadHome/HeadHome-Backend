@@ -6,8 +6,8 @@ import(
 	
 	"github.com/gin-gonic/gin"
 
-	"github.com/changdaozheng/headhome-backend/logic"
-	"github.com/changdaozheng/headhome-backend/fcm"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/logic"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/fcm"
 )
 //Maps API Request
 func PlanRoute(c *gin.Context){

@@ -1,3 +1,6 @@
+// Package websocket establishes a websocket between different user types for real-time communication. 
+//
+// The package is currently not utilised and is intended for future expansions, including in-app messaging and video call. 
 package websocket
 
 import (
