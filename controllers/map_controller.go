@@ -9,7 +9,10 @@ import(
 	"github.com/GSC23-HeadHome/HeadHome-Backend/logic"
 	"github.com/GSC23-HeadHome/HeadHome-Backend/fcm"
 )
-//Maps API Request
+
+// PlanRoute takes in the desired start and end points and returns a 
+// route geom and all the cooridinates on the geometry by leveraging 
+// Maps API.
 func PlanRoute(c *gin.Context){
 	//Process request
 	var req map[string]interface{}
@@ -29,7 +32,8 @@ func PlanRoute(c *gin.Context){
 	return
 }
 
-//FCM Request
+// Help is send a push notification to CareGivers, via Firebase Cloud messaging,
+// when their CareReceivers call for help. 
 func Help(c *gin.Context) {
 	//Extract request body
 	CrId := c.Param("id")

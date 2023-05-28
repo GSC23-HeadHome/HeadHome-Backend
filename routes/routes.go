@@ -9,6 +9,8 @@ import (
 	"github.com/GSC23-HeadHome/HeadHome-Backend/controllers"
 )
 
+// InitRoutes declares router groups and initialises different 
+// API endpoints for them. 
 func InitRoutes(router *gin.Engine){
 	// API health 
 	router.HEAD("/", func(c *gin.Context){c.Status(200)})

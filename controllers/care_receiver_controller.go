@@ -9,9 +9,8 @@ import (
 	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
-//CRUD Functions
 
-//Add new care receiver
+// AddCareReceiver adds a new care reciever document in care receiver Firebase collection.
 func AddCareReceiver(c *gin.Context){
 	//Extract request body 
 	reqBod, err := ioutil.ReadAll(c.Request.Body)
@@ -31,7 +30,7 @@ func AddCareReceiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Get complete list of care receiver data
+// GetALlCareReceiver reads all care receiver documents in care receiver Firebase collection.
 func GetAllCareReceivers(c *gin.Context){
 	result, err := database.ReadAllCareReceivers()
 	if err != nil {
@@ -41,7 +40,7 @@ func GetAllCareReceivers(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Get specific care receiver data
+// GetCareReceiver reads a specifed care receiver document in care receiver Firebase collection.
 func GetCareReceiver(c *gin.Context){
 	id := c.Param("id")
 	result, err := database.ReadCareReceiver(id)
@@ -52,7 +51,7 @@ func GetCareReceiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Return contact number of care giver
+// ContactCareGiver reads the care givers' contact number for a specified care receiver. 
 func ContactCareGiver(c *gin.Context){
 	//Process request body
 	type requestBody struct {
@@ -97,7 +96,7 @@ func ContactCareGiver(c *gin.Context){
 	return
 }
 
-//Update data for a specific care receiver
+// UpdateCareReceiver updates the specifed care receiver document in the care receiver Firebase collection.
 func UpdateCareReceiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.UpdateCareReceiver(c, id)
@@ -108,7 +107,7 @@ func UpdateCareReceiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Delete data of a specific care receiver
+// DeleteCareReceiver deletes the specified care receiver document in the care receiver Firebase collection. 
 func DeleteCareReceiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.DeleteCareReceiver(id)

@@ -15,7 +15,7 @@ import (
 	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
-//Add new care giver
+// AddCareGiver creates a new caregiver object in the caregiver Firebase collection.
 func AddCareGiver(c *gin.Context){
 	if err := database.CreateCareGiver(c); err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": err.Error()})
@@ -24,7 +24,7 @@ func AddCareGiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Read all care giver documents in the system
+// GetAllCareGivers reads all caregiver documents from the caregiver Firebase collection. 
 func GetAllCareGivers(c *gin.Context){
 	result, err := database.ReadAllCareGivers()
 	if err != nil {
@@ -34,7 +34,7 @@ func GetAllCareGivers(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Read specified caregiver
+// GetCareGiver reads the specified caregiver's document from the caregiver Firebase collection.
 func GetCareGiver(c *gin.Context){
 	id := c.Param("id")
 	result, err := database.ReadCareGiver(id)
@@ -45,7 +45,8 @@ func GetCareGiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Update specified caregiver details (except care receiver list)
+// UpdateCareGiver updates specifies care giver details. 
+// To update the related care receiver list, use NewCareReceiver and DeleteCareReceiver
 func UpdateCareGiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.UpdateCareGiver(c, id)
@@ -56,7 +57,7 @@ func UpdateCareGiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Add new care receiver to care giver's array
+// NewCareReceiver adds a new care receiver the care receiver list.
 func NewCareReceiver(c *gin.Context) {
 	cgId := c.Param("id")
 
@@ -111,7 +112,7 @@ func NewCareReceiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Remove care receiver from care giver's array
+// RemoveCareReceiver removes a care receiver from the care receiver list. 
 func RemoveCareReceiver(c *gin.Context) {
 	cgId := c.Param("id")
 
@@ -140,7 +141,7 @@ func RemoveCareReceiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Remove care giver
+// DeleteCareGiver deletes a care giver document from the caregiver Firebase collection.
 func DeleteCareGiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.DeleteCareGiver(id)

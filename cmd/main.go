@@ -13,7 +13,7 @@ import (
 	"github.com/GSC23-HeadHome/HeadHome-Backend/routes"
 )
 
-
+// main is the application entry point and manages API endpoints and routing. 
 func main(){
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()

@@ -4,11 +4,14 @@
 // enabling convenient manipulation and interaction with the Firestore data.
 package models
 
+// A Relationship is used by CareGiver and CareReceiver types to show the relationship betweeen
+// instances of these objects. 
 type Relationship struct{
 	Id 				string `firestore:"id"`
 	Relationship 	string `firestore:"relationship"`
 }
 
+// A CareGiver contains information about a care giver instance and the care receivers they care for.
 type CareGiver struct {
 	CgId 			string 			`firestore:"cg_id"`
 	Name 			string 			`firestore:"name"`

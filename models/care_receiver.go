@@ -1,5 +1,6 @@
 package models
 
+// A CareReceiver contains information about a care receiver instance and the care givers that care care for them.
 type CareReceiver struct {
 	CrId 			string 	`firestore:"cr_id"`
 	Name 			string 	`firestore:"name"`
