@@ -78,7 +78,7 @@ FIREBASE_ADMIN_PRIVATE_KEY=<your inline firebase admin private key>
 MAPS_API_KEY=<your maps api key>
 ```
 
-1. Launch the server at `0.0.0.0:8080`
+4. Launch the server at `0.0.0.0:8080`
 
 ```
 $ go run ./cmd
@@ -125,13 +125,10 @@ $ go run ./cmd
 │   └── ws_hub.go
 ├── .env (not included in github repo)
 ├── .gitignore
-├── .replit
 ├── Dockerfile
 ├── go.mod
 ├── go.sum
-├── Makefile
-├── README.md
-└── replit.nix
+└── README.md
 ```
 
 <br>
