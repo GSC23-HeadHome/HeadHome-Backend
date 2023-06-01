@@ -17,6 +17,8 @@ import (
 var FCMContext context.Context
 var FCMClient *messaging.Client
 
+// init initialises the Firebase Cloud Messaging context and client
+// when the  fcm package is first referenced 
 func init(){
 	var err error
 
@@ -27,6 +29,8 @@ func init(){
 	}
 }
 
+// TopicSend handles the http request to send a message to all users 
+// who are subscribed to a Firebase Cloud Messaging topic
 func TopicSend(body map[string]string, topic string) (error){
 
 	domainStartIndex := strings.Index(topic, "@")

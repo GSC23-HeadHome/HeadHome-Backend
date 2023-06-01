@@ -14,7 +14,8 @@ import (
 	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
-//Add new sos log
+// AddSOSLog handles the http request to create a new sos log 
+// when the care receiver calls for assistance to return home
 func AddSOSLog(c *gin.Context) {
 	
 	//1. Get previous sos log
@@ -24,14 +25,11 @@ func AddSOSLog(c *gin.Context) {
       	return 
 	}
 
-	//ignore if there are no previous logs or update failures
 	lastestSOSLog, err := database.ReadLatestSOSLog(sosLog.CrId)
 	if err != nil {
 	} 
-	fmt.Println("Step 1 end")
 	
 	//2. Create incoming request
-	//Convert to []byte data type
 	jsonData, err := json.Marshal(sosLog)
     if err != nil {
         fmt.Println(err)
@@ -39,33 +37,32 @@ func AddSOSLog(c *gin.Context) {
     }
 	bytesData := []byte(jsonData)
 
-	//Create new sos log
 	res, err := database.CreateSOSLog(bytesData); 
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	fmt.Println("Step 2 end")
-	//3. Update old sos log (from 1.) when new one has been created avoid having multiple active logs 
 	
-	homeMap := map[string] string {
-		"Status": "home",
+	//3. Update sos log (from 1.) 
+	lostMap := map[string] string {
+		"Status": "lost",
 	}
 
-	homeJson, err := json.Marshal(homeMap)
+	lostJson, err := json.Marshal(lostMap)
 	if err != nil {
 	}
 
-	homeBytes := []byte(homeJson)
+	lostBytes := []byte(lostJson)
 
-	if err := database.UpdateSOSLog(homeBytes, lastestSOSLog.SOSId); err != nil {
+	if err := database.UpdateSOSLog(lostBytes, lastestSOSLog.SOSId); err != nil {
 	}
 
 	c.IndentedJSON(http.StatusAccepted, gin.H{"SOSId": res})
 }
 
-//Read all sos logs 
+// GetAllSOSLogs retrieves all SOS logs related to the specified 
+// care receiver
 func GetAllSOSLogs(c *gin.Context) {
 	result, err := database.ReadAllSOSLogs()
 	if err != nil {
@@ -75,7 +72,7 @@ func GetAllSOSLogs(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Read latest sos log from specified care receiver 
+// GetLatestSOSLog reads the specified SOS log from the soslog
 func GetLatestSOSLog(c *gin.Context) {
 	id := c.Param("id")
 	result, err := database.ReadLatestSOSLog(id)
@@ -86,9 +83,14 @@ func GetLatestSOSLog(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Update sos log
+
+// AcceptSOSRequest handles the http request from the volunteer when they attempt
+// to provide assistance to the elderly. It changes the SOS log's status 
+// from "lost" to "guided" and adds the volunteer details into the log.
+// This is done after verifying that the volunteer has made contact with the 
+// care receiver and has a valid certification. 
 func AcceptSOSRequest(c *gin.Context) {
-	//Process request body
+	
 	type requestBody struct{
 		VId string `json:"VId"`
 		AuthID string `json:"AuthID"`
@@ -101,28 +103,28 @@ func AcceptSOSRequest(c *gin.Context) {
 		return
 	}
 
-	//Retrieve sosLog
+	// Retrieve existing SOS log
 	sosLog, err := database.FindSOSLog(req.SOSId)
 	if err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": "sos record not found"})
 		return
 	}
 	
-	//Retrieve care receiver involved
+	// Retrieve care receiver involved
 	careReceiver, err := database.ReadCareReceiver(sosLog.CrId)
 	if err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": "care receiver not found"})
 		return
 	}
 
-	//Retrieve requesting volunteer
+	// Retrieve requesting volunteer
 	volunteer, err := database.ReadVolunteer(req.VId)
 	if err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": "volunteer not found"})
 		return
 	}
 
-	//Authenticate and verify status
+	//Authenticate volunteer and verify volunteer certification validity
 	currentTime := time.Now().Unix()
 	if volunteer.CertificationStart >= currentTime || volunteer.CertificationEnd <= currentTime {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "volunteer not certified"})
@@ -134,7 +136,7 @@ func AcceptSOSRequest(c *gin.Context) {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "care receiver have already received help, thank you!"})
 		return
 	} else {
-		//Declare data to be updated and convert to []byte
+		// Update SOS Log with new status and volunteer information
 		data := map[string]interface{}{
 			"VId": req.VId,
 			"Volunteer": volunteer.Name,
@@ -147,20 +149,18 @@ func AcceptSOSRequest(c *gin.Context) {
 			return
 		}
 		
-		//Update SOS Log 
 		err = database.UpdateSOSLog(bytesData, req.SOSId)
 		if err != nil {
 			c.IndentedJSON(http.StatusNotFound, gin.H{"error": err.Error()})
 			return
 		}
 
-		//Retreive care giver information
+		// Send instructions for the way home to the care receiver
 		careGiver, err := database.ReadCareGiver(careReceiver.CareGiver[0].Id)
 		if err != nil {
 			c.IndentedJSON(http.StatusNotFound, gin.H{"error": "no care giver found"})
 		}
 
-		//Retreive route geometry 
 		directions, err := logic.RetrieveDirections(fmt.Sprintf("%f,%f", sosLog.StartLocation.Lat, sosLog.StartLocation.Lng), careGiver.Address)
 		if err != nil {
 			c.IndentedJSON(http.StatusBadRequest, err.Error())
@@ -182,7 +182,7 @@ func AcceptSOSRequest(c *gin.Context) {
 	} 
 }
 
-//Update status 
+// UpdateSOSStatus handles the http request to modify the status of a SOS log
 func UpdateSOSStatus(c *gin.Context){
 
 	//Extract information for request body

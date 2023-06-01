@@ -15,12 +15,14 @@ import (
 
 var sosLogRef *firestore.CollectionRef
 
-//Initialise in database.go
+// InitSOSLog initialises the reference to the sos_log 
+// Firebase collection
 func InitSosLog() {
 	sosLogRef = Client.Collection("sos_log")
 }
 
-//Create new document
+// CreateSOSLog creates a new document in the sos_log 
+// Firebase collection
 func CreateSOSLog(data []byte) (string, error) {
 	//Unmarshal data
 	var sosLog models.SOSLog
@@ -38,7 +40,8 @@ func CreateSOSLog(data []byte) (string, error) {
 	return sosLogId, nil
 }
 
-//Read all documents
+// ReadAllSOSLogs reads and returns all documents from the 
+// sos_log Firebase collection
 func ReadAllSOSLogs() ([]models.SOSLog, error) {
 	
 	var sosLogs []models.SOSLog
@@ -66,7 +69,9 @@ func ReadAllSOSLogs() ([]models.SOSLog, error) {
 	return sosLogs, nil
 }
 
-//Read latest document from specified care receiver with care receiver's id as input
+// ReadLatestSOSLog reads and returns the all documents
+// with cr_id field matching the specified id in the
+// sos_log Firebase collection
 func ReadLatestSOSLog(id string) (models.SOSLog, error) {
 	// Firebase query to find latest document
 	q := sosLogRef.Where("cr_id", "==", id)
@@ -90,7 +95,8 @@ func ReadLatestSOSLog(id string) (models.SOSLog, error) {
 	return sosLog, nil
 }
 
-//Read all document from specified care receiver with care receiver's id as input
+// FindSOSLog reads the document with the matching SOSId
+// in the sos_log Firebase collection
 func FindSOSLog(SOSId string) (models.SOSLog, error) {
 	doc, err := sosLogRef.Doc(SOSId).Get(FBCtx)
 	if err != nil {
@@ -104,7 +110,8 @@ func FindSOSLog(SOSId string) (models.SOSLog, error) {
 	return sosLog, nil
 }
 
-//Update SOS log's information (e.g. volunteers and status)
+// UpdateSOSLog updates the document with the matching id
+// in the sos_log Firebase collection
 func UpdateSOSLog(data []byte, id string) (error) {
 	
 	//Unmarshal data

@@ -15,6 +15,9 @@ import (
 var FBCtx context.Context
 var Client *firestore.Client
 
+// init automatically initialises the Firebase application context 
+// and references to all Firebase collections when the database 
+// package is first referenced 
 func init(){
 	var err error
 	FBCtx = context.Background()
@@ -31,6 +34,7 @@ func init(){
 	InitTravelLog()
 }
 
+// CloseDB destructs the closes the Firebase App Client instance
 func CloseDB(){
 	Client.Close()
 }

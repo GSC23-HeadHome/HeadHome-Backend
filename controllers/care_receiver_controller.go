@@ -10,19 +10,17 @@ import (
 )
 
 
-// AddCareReceiver adds a new care reciever document in care receiver Firebase collection.
+// AddCareReceiver handles the http request to register a new care receiver
 func AddCareReceiver(c *gin.Context){
-	//Extract request body 
+	
 	reqBod, err := ioutil.ReadAll(c.Request.Body)
     if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
       	return 
     }
 
-	//Convert io.Reader data type to []byte data type
 	bytesData := []byte(reqBod)
 
-	//Create
 	if err := database.CreateCareReceiver(bytesData); err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
@@ -30,7 +28,8 @@ func AddCareReceiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-// GetALlCareReceiver reads all care receiver documents in care receiver Firebase collection.
+// GetAllCareReceivers handles the http request to retrieve information of a list of all care 
+// receivers
 func GetAllCareReceivers(c *gin.Context){
 	result, err := database.ReadAllCareReceivers()
 	if err != nil {
@@ -40,7 +39,7 @@ func GetAllCareReceivers(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-// GetCareReceiver reads a specifed care receiver document in care receiver Firebase collection.
+// GetCareReceiver handles the http request to retrieve information of a specified care receiver
 func GetCareReceiver(c *gin.Context){
 	id := c.Param("id")
 	result, err := database.ReadCareReceiver(id)
@@ -51,7 +50,8 @@ func GetCareReceiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-// ContactCareGiver reads the care givers' contact number for a specified care receiver. 
+// ContactCareGiver handles the http request to retrieve the specified care receiver's contact
+// information
 func ContactCareGiver(c *gin.Context){
 	//Process request body
 	type requestBody struct {
@@ -96,7 +96,7 @@ func ContactCareGiver(c *gin.Context){
 	return
 }
 
-// UpdateCareReceiver updates the specifed care receiver document in the care receiver Firebase collection.
+// UpdateCareReceiver handles the http request to update the specified care receiver's information
 func UpdateCareReceiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.UpdateCareReceiver(c, id)
@@ -107,7 +107,8 @@ func UpdateCareReceiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-// DeleteCareReceiver deletes the specified care receiver document in the care receiver Firebase collection. 
+// DeleteCareReceiver handles the http request to remove the specified care receiver's 
+// information from the system
 func DeleteCareReceiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.DeleteCareReceiver(id)

@@ -12,12 +12,14 @@ import (
 
 var careGiverRef *firestore.CollectionRef
 
-//Initialise in database.go
+// InitCareGiver initialises the reference to the care_giver 
+// Firebase collection
 func InitCareGiver(){
 	careGiverRef = Client.Collection("care_giver")
 }
 
-//Create new document
+// CreateCareGiver creates a new document in the care_giver 
+// Firebase collection
 func CreateCareGiver(c *gin.Context) (error){
 	var careGiver models.CareGiver
 	if err := c.ShouldBindJSON(&careGiver); err != nil {
@@ -31,7 +33,8 @@ func CreateCareGiver(c *gin.Context) (error){
 	return nil
 }
 
-//Read all documents
+// ReadAllCareGivers reads and returns all documents from the 
+// care_giver Firebase collection
 func ReadAllCareGivers() ([]models.CareGiver, error) {
 	var careGivers []models.CareGiver
 	iter := careGiverRef.Documents(FBCtx)
@@ -54,7 +57,8 @@ func ReadAllCareGivers() ([]models.CareGiver, error) {
 	return careGivers, nil
 }
 
-//Read specific document
+// ReadCareGiver reads and returns a document with the matching id
+// from the care_giver Firebase collection
 func ReadCareGiver(id string) (models.CareGiver, error) {
 	
 	doc, err := careGiverRef.Doc(id).Get(FBCtx)
@@ -69,7 +73,9 @@ func ReadCareGiver(id string) (models.CareGiver, error) {
 	return careGiver, nil
 }
 
-//Update care giver details (except care giver modifications e.g. add and remove)
+// UpdateCareGiver updates a document with the matching id in the 
+// care_giver Firebase collection (use NewCareReceiver and 
+// RemoveCareReceiver to modify the care receiver list)
 func UpdateCareGiver(c *gin.Context, id string) (error){
 	var careGiver models.CareGiver
 	if err := c.ShouldBindJSON(&careGiver); err != nil {
@@ -100,8 +106,9 @@ func UpdateCareGiver(c *gin.Context, id string) (error){
 	return nil
 }
 
-//Add new care receiver to specified care giver
-
+// NewCareReceiver adds a new care receiver to the care receiver list 
+// of the document with the matching id in the care_giver Firebase
+// collection
 func NewCareReceiver(newCareReceiver models.Relationship, id string) (error){
 	update := []firestore.Update {
 		{
@@ -117,7 +124,9 @@ func NewCareReceiver(newCareReceiver models.Relationship, id string) (error){
 	return nil
 }
 
-//Remove care receiver from specified care giver
+// RemoveCareReceiver removes a new care receiver from the 
+// care receiver list of the document with the matching id
+// in the care_giver Firebase collection
 func RemoveCareReceiver(CgId string, CrId string) (error){
 
 	//ArrayRemove not available in go; Using manual update
@@ -148,7 +157,8 @@ func RemoveCareReceiver(CgId string, CrId string) (error){
 	return nil
 }
 
-//Delete care receiver
+// Delete the document with the matching id from the 
+// care_giver Firebase collection
 func DeleteCareGiver(id string) (error) {
 	_, err := careGiverRef.Doc(id).Delete(FBCtx)
 	if err != nil {

@@ -13,6 +13,8 @@ import (
 
 var App *firebase.App
 
+// init initalises the Firebase Application when the firebase_app
+// package is first called
 func init() {
 	var err error
 	

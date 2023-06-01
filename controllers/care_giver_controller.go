@@ -15,7 +15,7 @@ import (
 	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
-// AddCareGiver creates a new caregiver object in the caregiver Firebase collection.
+// AddCareGiver handles the http request to register a new care giver
 func AddCareGiver(c *gin.Context){
 	if err := database.CreateCareGiver(c); err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": err.Error()})
@@ -24,7 +24,7 @@ func AddCareGiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-// GetAllCareGivers reads all caregiver documents from the caregiver Firebase collection. 
+// GetAllCareGivers handles the http request to retrieve information of a list of all care givers 
 func GetAllCareGivers(c *gin.Context){
 	result, err := database.ReadAllCareGivers()
 	if err != nil {
@@ -34,7 +34,7 @@ func GetAllCareGivers(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-// GetCareGiver reads the specified caregiver's document from the caregiver Firebase collection.
+// GetCareGiver handles the http request to retrieve information of a specified care giver
 func GetCareGiver(c *gin.Context){
 	id := c.Param("id")
 	result, err := database.ReadCareGiver(id)
@@ -45,8 +45,8 @@ func GetCareGiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-// UpdateCareGiver updates specifies care giver details. 
-// To update the related care receiver list, use NewCareReceiver and DeleteCareReceiver
+// UpdateCareGiver handles the http request to update specified care giver details
+// To update the list of care receivers under the care giver's care, use NewCareReceiver and DeleteCareReceiver
 func UpdateCareGiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.UpdateCareGiver(c, id)
@@ -57,7 +57,7 @@ func UpdateCareGiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-// NewCareReceiver adds a new care receiver the care receiver list.
+// NewCareReceiver handles the http request to add a new care receiver to a specified care giver's care receiver list
 func NewCareReceiver(c *gin.Context) {
 	cgId := c.Param("id")
 
@@ -73,7 +73,7 @@ func NewCareReceiver(c *gin.Context) {
 		return
 	}
 
-	//Authenticate 
+	// Authentication: Check if care receiver has entered the correct care receiver AuthId
 	careReceiver, err := database.ReadCareReceiver(req.CrId)
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -85,7 +85,7 @@ func NewCareReceiver(c *gin.Context) {
 		return
 	}	
 
-	//Add care receiver to care giver docs	
+	// Add care receiver to care giver document 
 	newCareReceiver := models.Relationship{
 		Id: req.CrId,
 		Relationship: req.Relationship,
@@ -96,7 +96,7 @@ func NewCareReceiver(c *gin.Context) {
 		return
 	}
 
-	//Change care giver in care receiver docs
+	// Mofify care give in care receiver document
 	newCareGiver := []models.Relationship {
 		{
 			Id: cgId,
@@ -112,11 +112,10 @@ func NewCareReceiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-// RemoveCareReceiver removes a care receiver from the care receiver list. 
+// RemoveCareReceiver handles the http request to remove a care receiver from a specified care giver's care receiver list
 func RemoveCareReceiver(c *gin.Context) {
 	cgId := c.Param("id")
 
-	//Extract request information
 	type reqBod struct {
 		CrId	string `json:"CrId"`
 	}
@@ -126,13 +125,13 @@ func RemoveCareReceiver(c *gin.Context) {
 		return
 	}
 
-	//Remove care receiver from care giver docs
+	//R emove care receiver from care giver docs
 	if err := database.RemoveCareReceiver(cgId, req.CrId); err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 
-	//Remove care giver from care receiver docs
+	// Remove care giver from care receiver docs
 	if err := database.ChangeCareGiver([]models.Relationship{}, req.CrId); err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
@@ -141,7 +140,7 @@ func RemoveCareReceiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-// DeleteCareGiver deletes a care giver document from the caregiver Firebase collection.
+// DeleteCareGiver handles the http request to permanently remove a care giver from the database
 func DeleteCareGiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.DeleteCareGiver(id)

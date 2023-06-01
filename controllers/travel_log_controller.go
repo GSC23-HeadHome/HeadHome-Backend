@@ -9,7 +9,8 @@ import (
 	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
-//Create new travel log
+// AddTravelLog handles the http request to create a new travel log 
+// when the care receiver's device uploads their location periodically
 func AddTravelLog(c *gin.Context) {
 	//Extract request body 
 	reqBod, err := ioutil.ReadAll(c.Request.Body)
@@ -32,7 +33,7 @@ func AddTravelLog(c *gin.Context) {
 
 }
 
-//Read all travel logs of specified care receiver
+// GetTravelLog retrives all travel logs of the specified care receiver
 func GetTravelLog(c *gin.Context) {
 	id := c.Param("id")
 	result, err := database.ReadTravelLog(id)
@@ -43,7 +44,8 @@ func GetTravelLog(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Read latest travel log of specified care receiver
+// GetLatestTravelLog handles the http request to retrieve the lastest travel 
+// log of the specified care receiver
 func GetLatestTravelLog(c *gin.Context) {
 	id := c.Param("id")
 	result, err := database.ReadLatestTravelLog(id)
