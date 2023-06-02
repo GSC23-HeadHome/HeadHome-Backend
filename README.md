@@ -84,7 +84,7 @@ MAPS_API_KEY=<your maps api key>
 $ go run ./cmd
 ```
 
-## 🔑 &nbsp; Files and Directories
+## 🔑 &nbsp;Files and Directories
 
 ```tree
 ├── cmd
