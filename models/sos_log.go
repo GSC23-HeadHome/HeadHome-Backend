@@ -1,5 +1,7 @@
 package models
 
+// A SOSLog records a SOS call that has been made, its status,
+// and the volunteer who responded to that call. 
 type SOSLog struct {
 	CrId 				string 	`json:"CrId" firestore:"cr_id"`
 	Datetime 			int64 	`json:"Datetime" firestore:"datetime"`

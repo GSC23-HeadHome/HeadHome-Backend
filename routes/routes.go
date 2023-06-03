@@ -1,18 +1,23 @@
+// Package routes provides the implementation of the API routes for the HeadHome-Backend server. 
+//
+// It defines the RESTful endpoints and associates them with the corresponding controller functions.
 package routes
 
 import (
 	"github.com/gin-gonic/gin"
 	
-	"github.com/changdaozheng/headhome-backend/controllers"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/controllers"
 )
 
+// InitRoutes declares router groups and initialises different 
+// API endpoints for them. 
 func InitRoutes(router *gin.Engine){
-	//API health 
+	// API health 
 	router.HEAD("/", func(c *gin.Context){c.Status(200)})
 	router.GET("/", func(c *gin.Context){c.String(200, "API HEALTHY")})
 
 	
-	//volunteers
+	// Volunteers
 	volunteerR := router.Group("/volunteers")
 	volunteerR.GET("", controllers.GetAllVolunteers)
 	volunteerR.GET("/:id", controllers.GetVolunteer)
@@ -20,7 +25,7 @@ func InitRoutes(router *gin.Engine){
 	volunteerR.PUT("/:id", controllers.UpdateVolunteer)
 	volunteerR.DELETE("/:id", controllers.DeleteVolunteer)
 
-	//caregiver 
+	// Caregivers
 	careGiverR := router.Group("/caregiver")
 	careGiverR.GET("", controllers.GetAllCareGivers)
 	careGiverR.GET("/:id", controllers.GetCareGiver)
@@ -31,7 +36,7 @@ func InitRoutes(router *gin.Engine){
 	careGiverR.DELETE("/:id", controllers.DeleteCareGiver)
 	
 
-	//carereceiver
+	// Care Receiver
 	careReceiverR := router.Group("/carereceiver")
 	careReceiverR.GET("", controllers.GetAllCareReceivers)
 	careReceiverR.GET("/:id", controllers.GetCareReceiver)
@@ -42,7 +47,7 @@ func InitRoutes(router *gin.Engine){
 	careReceiverR.PUT("/:id", controllers.UpdateCareReceiver)
 	careReceiverR.DELETE("/:id", controllers.DeleteCareReceiver)
 
-	//sos
+	// SOS calls
 	sosR := router.Group("/sos")
 	sosR.GET("", controllers.GetAllSOSLogs)
 	sosR.GET("/:id", controllers.GetLatestSOSLog)
@@ -50,7 +55,7 @@ func InitRoutes(router *gin.Engine){
 	sosR.PUT("/accept", controllers.AcceptSOSRequest)
 	sosR.PUT("/:id", controllers.UpdateSOSStatus) 
 
-	//travellog
+	// Travel logs
 	travelLogR := router.Group("/travellog")
 	travelLogR.GET("/:id", controllers.GetLatestTravelLog)
 	travelLogR.GET("/:id/all", controllers.GetTravelLog)

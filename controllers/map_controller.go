@@ -6,10 +6,13 @@ import(
 	
 	"github.com/gin-gonic/gin"
 
-	"github.com/changdaozheng/headhome-backend/logic"
-	"github.com/changdaozheng/headhome-backend/fcm"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/logic"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/fcm"
 )
-//Maps API Request
+
+// PlanRoute handles the http request for an optimal route home. 
+// It returns a route geom of the optimal route by leveraging
+// Google Maps API.
 func PlanRoute(c *gin.Context){
 	//Process request
 	var req map[string]interface{}
@@ -29,7 +32,8 @@ func PlanRoute(c *gin.Context){
 	return
 }
 
-//FCM Request
+// Help handles the http request to send a push notification to CareGivers, 
+// via Firebase Cloud messaging, when their CareReceivers call for help. 
 func Help(c *gin.Context) {
 	//Extract request body
 	CrId := c.Param("id")

@@ -1,3 +1,6 @@
+// Package logic provides utility functions that serve the business logic of the application.
+//
+// It includes functions for interacting with external APIs, performing data transformations, and implementing core business rules.
 package logic
 
 import (
@@ -53,6 +56,7 @@ type DirectionsResult struct {
     Route              []NewNode   `json:"Route"`
 }
 
+// mapToNode unmarshals the Firebase Maps API routing request to a Node object
 func mapToNode(data interface{}) (Node, error){
     //assert map[string]interface on input 
     m, ok := data.(map[string]interface{})
@@ -76,8 +80,12 @@ func mapToNode(data interface{}) (Node, error){
     return node, nil
 }
 
+// RetrieveDirections handles the http request to retrieve the most optimal 
+// route from the start coordinate to the end coordinate by leveraging 
+// Google Maps API
 func RetrieveDirections(start string, end string) (DirectionsResult, error){
 	
+    //Step 1: Make API calls 
 	_, exists := os.LookupEnv(("MAPS_API_KEY"))
 	if !exists {
 		err := godotenv.Load()
@@ -124,8 +132,8 @@ func RetrieveDirections(start string, end string) (DirectionsResult, error){
 
     /*
     Extracting relevant nested json data
-    a. steps = res['routes'][0]['legs'][0]['steps']
-    b. polyline = res['routes'][0]['overview_polyline']
+        a. steps = res['routes'][0]['legs'][0]['steps']
+        b. polyline = res['routes'][0]['overview_polyline']
     */
     routes := jsonData["routes"].([]interface{})
     firstRoute :=routes[0].(map[string]interface{})
@@ -148,7 +156,7 @@ func RetrieveDirections(start string, end string) (DirectionsResult, error){
 
         nodeSlice = append(nodeSlice, res)
     }
-
+    
     var newNodeSlice []NewNode
     for _, node := range nodeSlice {
         newNode := NewNode {

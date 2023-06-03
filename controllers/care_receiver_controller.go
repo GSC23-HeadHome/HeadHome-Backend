@@ -6,24 +6,21 @@ import (
 	
 	"github.com/gin-gonic/gin"
 
-	"github.com/changdaozheng/headhome-backend/database"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/database"
 )
 
-//CRUD Functions
 
-//Add new care receiver
+// AddCareReceiver handles the http request to register a new care receiver
 func AddCareReceiver(c *gin.Context){
-	//Extract request body 
+	
 	reqBod, err := ioutil.ReadAll(c.Request.Body)
     if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
       	return 
     }
 
-	//Convert io.Reader data type to []byte data type
 	bytesData := []byte(reqBod)
 
-	//Create
 	if err := database.CreateCareReceiver(bytesData); err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
@@ -31,7 +28,8 @@ func AddCareReceiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Get complete list of care receiver data
+// GetAllCareReceivers handles the http request to retrieve information of a list of all care 
+// receivers
 func GetAllCareReceivers(c *gin.Context){
 	result, err := database.ReadAllCareReceivers()
 	if err != nil {
@@ -41,7 +39,7 @@ func GetAllCareReceivers(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Get specific care receiver data
+// GetCareReceiver handles the http request to retrieve information of a specified care receiver
 func GetCareReceiver(c *gin.Context){
 	id := c.Param("id")
 	result, err := database.ReadCareReceiver(id)
@@ -52,7 +50,8 @@ func GetCareReceiver(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-//Return contact number of care giver
+// ContactCareGiver handles the http request to retrieve the specified care receiver's contact
+// information
 func ContactCareGiver(c *gin.Context){
 	//Process request body
 	type requestBody struct {
@@ -97,7 +96,7 @@ func ContactCareGiver(c *gin.Context){
 	return
 }
 
-//Update data for a specific care receiver
+// UpdateCareReceiver handles the http request to update the specified care receiver's information
 func UpdateCareReceiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.UpdateCareReceiver(c, id)
@@ -108,7 +107,8 @@ func UpdateCareReceiver(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"message":"successful"})
 }
 
-//Delete data of a specific care receiver
+// DeleteCareReceiver handles the http request to remove the specified care receiver's 
+// information from the system
 func DeleteCareReceiver(c *gin.Context) {
 	id := c.Param("id")
 	err := database.DeleteCareReceiver(id)

@@ -1,3 +1,6 @@
+// Package fcm implements push notifications for users by leveraging the Firebase Cloud Messaging (FCM) service.
+//
+// It provides initialization and access to the FCM client for sending push notification messages to users subscribed to a specific FCM topic.
 package fcm
 
 import (
@@ -8,12 +11,14 @@ import (
 
     "firebase.google.com/go/messaging"
 
-	"github.com/changdaozheng/headhome-backend/firebase_app"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/firebase_app"
 )
 
 var FCMContext context.Context
 var FCMClient *messaging.Client
 
+// init initialises the Firebase Cloud Messaging context and client
+// when the  fcm package is first referenced 
 func init(){
 	var err error
 
@@ -24,6 +29,8 @@ func init(){
 	}
 }
 
+// TopicSend handles the http request to send a message to all users 
+// who are subscribed to a Firebase Cloud Messaging topic
 func TopicSend(body map[string]string, topic string) (error){
 
 	domainStartIndex := strings.Index(topic, "@")

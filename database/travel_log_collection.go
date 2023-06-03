@@ -10,17 +10,19 @@ import (
 	"cloud.google.com/go/firestore"
 	"google.golang.org/api/iterator"
 
-	"github.com/changdaozheng/headhome-backend/models"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/models"
 )
 
 var travelLogRef *firestore.CollectionRef
 
-//Initialise in database.go
+// InitTravelLog initialises the reference to the travel_log
+// Firebase collection
 func InitTravelLog() {
 	travelLogRef = Client.Collection("travel_log")
 }
 
-//Create new document
+// CreateTravelLog creates a new document in the travel_log 
+// Firebase collection
 func CreateTravelLog(data []byte) (string, error) {
 	//Unmarshal data
 	var travelLog models.TravelLog
@@ -86,7 +88,9 @@ func ReadAllTravelLogs() ([]models.TravelLog, error) {
 	return travelLogs, nil
 }
 
-//Read all documents from specified care receiver
+// ReadTravelLog reads and returns all documents with cr_id 
+// matching the specified id in the travel_log Firebase
+// collection
 func ReadTravelLog(id string) ([]models.TravelLog, error) {
 	//Firebase query to find all documents that belongs to a care receiver
 	q := travelLogRef.Where("cr_id", "==", id)
@@ -116,7 +120,9 @@ func ReadTravelLog(id string) ([]models.TravelLog, error) {
 	return travelLogs, nil
 }
 
-//Read latest document from specified care receiver
+// ReadLatestTravelLog reads and returns the last created document 
+// with cr_id that matches the id, from the travel_log Firebase 
+// collection
 func ReadLatestTravelLog(id string) (models.TravelLog, error) {
 	// Firebase query to find latest document
 	q := travelLogRef.Where("cr_id", "==", id)
@@ -140,7 +146,8 @@ func ReadLatestTravelLog(id string) (models.TravelLog, error) {
 	return travelLog, nil
 }
 
-//Update SOS log's information (e.g. volunteers and status)
+// UpdateTravelLog updates the document with matching id in the 
+// travel_log Firebase collection
 func UpdateTravelLog(data []byte, id string) (error) {
 	
 	//Unmarshal data

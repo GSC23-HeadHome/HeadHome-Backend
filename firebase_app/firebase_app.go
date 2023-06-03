@@ -1,3 +1,4 @@
+// Package firebase_app manages the connection between this server and Firebase, providing initialization and access to the Firebase app instance.
 package firebase_app
 
 import (
@@ -12,6 +13,8 @@ import (
 
 var App *firebase.App
 
+// init initalises the Firebase Application when the firebase_app
+// package is first called
 func init() {
 	var err error
 	

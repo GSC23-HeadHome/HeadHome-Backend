@@ -1,5 +1,9 @@
 package models
 
+// A TraveLog records the whereabouts of a CareReceiver to help CareGivers and Volunteers
+// track their whereabouts.
+//
+// These data are analyse and used to generate reports about the CareReciever's whereabouts. 
 type TravelLog struct {
 	CrId		string 	`json:"CrId" firestore:"cr_id"`
 	Datetime	int64 	`json:"Datetime" firestore:"datetime"`

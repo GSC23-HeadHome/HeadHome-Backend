@@ -8,16 +8,20 @@ import (
 	"cloud.google.com/go/firestore"
 	"google.golang.org/api/iterator"
 
-	"github.com/changdaozheng/headhome-backend/logic"
-	"github.com/changdaozheng/headhome-backend/models"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/logic"
+	"github.com/GSC23-HeadHome/HeadHome-Backend/models"
 )
 
 var careReceiverRef *firestore.CollectionRef
 
+// InitCareReceiver initialises the reference to the care_receiver
+// Firebase collection
 func InitCareReceiver(){
 	careReceiverRef = Client.Collection("care_receiver")
 }
 
+// CreateCareReceiver creates a document in the care_receiver
+// Firebase collection
 func CreateCareReceiver(data []byte) (error){
 	//Unmarshal data
 	var careReceiver models.CareReceiver
@@ -36,6 +40,8 @@ func CreateCareReceiver(data []byte) (error){
 	return nil
 }
 
+// ReadAllCareReceiver reads and returns all documents from the 
+// care_receiver Firebase collection
 func ReadAllCareReceivers() ([]models.CareReceiver, error) {
 	var careReceivers []models.CareReceiver
 	iter := careReceiverRef.Documents(FBCtx)
@@ -58,6 +64,8 @@ func ReadAllCareReceivers() ([]models.CareReceiver, error) {
 	return careReceivers, nil
 }
 
+// ReadCareReceiver reads and returns the document with the mathcing 
+// id from the care_receiver Firebase collection
 func ReadCareReceiver(id string) (models.CareReceiver, error) {
 	
 	doc, err := careReceiverRef.Doc(id).Get(FBCtx)
@@ -72,7 +80,9 @@ func ReadCareReceiver(id string) (models.CareReceiver, error) {
 	return careReceiver, nil
 }
 
-//Update care receiver details (except care giver modifications e.g. add and remove)
+// UpdateCareReceiver updates the document with the matching id 
+// in the care_giver Firebase collection (use ChangeCareGiver
+// to modify the related caregiver)
 func UpdateCareReceiver(c *gin.Context, id string) (error){
 	var careReceiver models.CareReceiver
 	if err := c.ShouldBindJSON(&careReceiver); err != nil {
@@ -104,7 +114,8 @@ func UpdateCareReceiver(c *gin.Context, id string) (error){
 	return nil
 }
 
-//Alter care giver (only allow 1 care giver per care receier)
+// ChangeCareGiver changes the care giver for a document with the 
+// matching id in the care_receiver Firebase collection
 func ChangeCareGiver(newCg []models.Relationship, id string) (error) {
 	update := []firestore.Update{
 		{
@@ -120,7 +131,8 @@ func ChangeCareGiver(newCg []models.Relationship, id string) (error) {
 
 }
 
-//Delete care receiver
+// DeleteCareReceiver deletes a document with the matching id in the 
+// care_receiver Firebase collection
 func DeleteCareReceiver(id string) (error) {
 	_, err := careReceiverRef.Doc(id).Delete(FBCtx)
 	if err != nil {
