@@ -45,17 +45,17 @@ func AddSOSLog(c *gin.Context) {
 
 	
 	//3. Update sos log (from 1.) 
-	lostMap := map[string] string {
-		"Status": "lost",
+	homeMap := map[string] string {
+		"Status": "home",
 	}
 
-	lostJson, err := json.Marshal(lostMap)
+	homeJson, err := json.Marshal(homeMap)
 	if err != nil {
 	}
 
-	lostBytes := []byte(lostJson)
+	homeBytes := []byte(homeJson)
 
-	if err := database.UpdateSOSLog(lostBytes, lastestSOSLog.SOSId); err != nil {
+	if err := database.UpdateSOSLog(homeBytes, lastestSOSLog.SOSId); err != nil {
 	}
 
 	c.IndentedJSON(http.StatusAccepted, gin.H{"SOSId": res})
